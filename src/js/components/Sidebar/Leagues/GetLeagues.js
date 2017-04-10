@@ -61,9 +61,7 @@ const GetLeagues = React.createClass({
 
  componentDidUpdate(prevProps, prevState) {
     if (this.props.update === prevProps.update) {
-      console.log("Nothing to get" + this.state.leagues + this.props.update);
     } else {
-      console.log("Got league");
       this.getLeague();
     }
   },

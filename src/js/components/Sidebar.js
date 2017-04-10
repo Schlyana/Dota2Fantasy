@@ -30,10 +30,8 @@ const Sidebar = React.createClass({
         fetch(url)
         .then((response) => response.text())
         .then((responseText) => {
-            console.log(responseText);
             responseText = JSON.parse(responseText);
             var teams = responseText['data'][0]['teams'];
-            console.log(teams);
 
             if (teams.length > 0){
                 var newState = {teams : teams, activeTeam : teams[0]};

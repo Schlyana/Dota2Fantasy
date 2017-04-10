@@ -35,7 +35,6 @@ const Leagues = React.createClass({
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.leagueState === prevProps.leagueState) {
-      console.log("No league update");
     } else {
       this.onChildUpdate();
     }

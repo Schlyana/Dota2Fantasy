@@ -53,7 +53,6 @@ const JoinLeague = React.createClass({
   },
 
   registerTeam() {
-    console.log(this.state.team);
     var team = {
       "team" : {
         "name" : this.state.team,

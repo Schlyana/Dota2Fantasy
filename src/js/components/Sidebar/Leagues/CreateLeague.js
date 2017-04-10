@@ -63,7 +63,6 @@ const CreateLeague = React.createClass({
   },
 
   registerTeam() {
-    console.log(this.state.team);
     var team = {
       "team" : {
         "name" : this.state.team,
@@ -94,9 +93,7 @@ const CreateLeague = React.createClass({
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.update === prevProps.update) {
-      console.log("Nothing to update");
     } else {
-      console.log("Something to update");
       this.leagueCreate();
       this.props.callback();
     }

@@ -13,5 +13,3 @@ ReactDOM.render(
         <Route path="/" component={Layout}></Route>
     </Router>,
     app);
-
-//        <Route path="/" component={SignIn}></Route>
