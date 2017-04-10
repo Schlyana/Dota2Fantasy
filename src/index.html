@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html style="height:100%">
+  <head>
+    <meta charset="UTF-8" />
+    <title> Dota2 Fantasy League </title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/slate/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="993093085218-m9fedj0g0ogqnlpn110qchlj9iv4fi4c.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </head>
+    <body style="overflow-x:hidden; height:100%">
+        <div id="signIn" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <script>
+          function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+
+            var user = {
+              "user" : {
+                "name" : profile.getName(),
+                "given_name" : profile.getGivenName(),
+                "family_name" : profile.getFamilyName(),
+                "email" : profile.getEmail(),
+                "token" : id_token,
+                "teams" : [],
+                "leagues" : []
+              }
+            };
+            localStorage.email = profile.getEmail();
+            console.log(user);
+            user = JSON.stringify(user);
+            var url = "http://localhost:3000/user/register";
+            var request = new Request(url, {
+              method: 'POST',
+              body: user,
+              headers: new Headers({
+                'Content-Type': 'application/json'
+              })
+            });
+            fetch(request).then(function(response){
+              return response.json();
+            }).then(function(j){
+              document.getElementById("signIn").style.display = "none";
+              document.getElementById("app").style.display = "inline";
+              console.log(j);
+            }).catch((error) => {
+              console.warn(error);
+            });
+          }
+        </script>
+        <div id="app" style="display:none"></div>
+        <script src="/client.min.js"></script>
+    </body>
+</html>
